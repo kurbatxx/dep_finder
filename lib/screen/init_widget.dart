@@ -9,20 +9,26 @@ class InitWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (BuildContext context, WidgetRef ref, Widget? child) {
-        final connection = ref.watch(simpleNodesProvider(19));
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Поиск депутата"),
+        centerTitle: true,
+      ),
+      body: Consumer(
+        builder: (BuildContext context, WidgetRef ref, Widget? child) {
+          final connection = ref.watch(simpleNodesProvider(19));
 
-        return connection.when(
-          data: (data) => SearchDropdown(nodes: data),
-          error: (_, __) => const Center(
-            child: Text("Не удалось загрузить данные"),
-          ),
-          loading: () => const Center(
-            child: LoadingWidget(),
-          ),
-        );
-      },
+          return connection.when(
+            data: (data) => SearchDropdown(nodes: data),
+            error: (_, __) => const Center(
+              child: Text("Не удалось загрузить данные"),
+            ),
+            loading: () => const Center(
+              child: LoadingWidget(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

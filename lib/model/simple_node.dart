@@ -7,7 +7,7 @@ class SimpleNode with SimpleNodeMappable {
   final int nodeId;
   final int parrentId;
   final String nodeName;
-  final String? deputatId;
+  final int? deputatId;
 
   SimpleNode({
     @MappableField(key: 'node_id') required this.nodeId,
@@ -16,6 +16,6 @@ class SimpleNode with SimpleNodeMappable {
     @MappableField(key: 'deputat_id') required this.deputatId,
   });
 
-  //static const fromMap = SimpleNodeMapper.fromMap;
-  static const fromJson = SimpleNodeMapper.fromJson;
+  static const fromMap = SimpleNodeMapper.fromMap;
+  //static const fromJson = SimpleNodeMapper.fromJson;
 }

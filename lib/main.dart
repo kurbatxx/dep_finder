@@ -1,6 +1,8 @@
+import 'package:dep_finder/router/router.dart';
 import 'package:dep_finder/screen/init_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(
@@ -15,10 +17,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: InitWidget(),
-      ),
+    return MaterialApp.router(
+      routerConfig: router,
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:dep_finder/provider/deputat_id_provider.dart';
 import 'package:dep_finder/provider/simple_nodes_provider.dart';
 import 'package:dep_finder/provider/street_id_provider.dart';
 import 'package:dep_finder/widget/loading_widget.dart';
@@ -22,10 +23,24 @@ class Buildings extends StatelessWidget {
             child: Text("Не удалось загрузить данные"),
           ),
           data: (data) {
-            return Wrap(
-              children: [
-                for (final item in data) Chip(label: Text(item.nodeName))
-              ],
+            return Consumer(
+              builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                return Wrap(
+                  spacing: 4.0,
+                  runSpacing: 4.0,
+                  children: [
+                    for (final item in data)
+                      ActionChip(
+                        onPressed: () {
+                          ref.read(deputatIdProvider.notifier).state =
+                              item.deputatId;
+                          print(item.deputatId);
+                        },
+                        label: Text(item.nodeName),
+                      )
+                  ],
+                );
+              },
             );
           },
         );

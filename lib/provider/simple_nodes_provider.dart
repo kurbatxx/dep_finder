@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:collection/collection.dart' show compareNatural;
 
 import 'package:dep_finder/model/simple_node.dart';
 import 'package:dep_finder/provider/ip_provider.dart';
@@ -22,5 +23,6 @@ final simpleNodesProvider =
   List<SimpleNode> elements =
       jsonList.map((e) => SimpleNodeMapper.fromMap(e)).toList();
 
+  elements.sort((a, b) => compareNatural(a.nodeName, b.nodeName));
   return elements;
 });
